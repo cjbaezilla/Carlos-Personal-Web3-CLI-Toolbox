@@ -7,6 +7,7 @@ export async function createNewWallet() {
     const prompts = await inquirer.prompt([
         { name: 'address_amount', message: 'How many addresses do you want to create?:', type: 'input' }
     ])
+    
     if(prompts.address_amount > 1) {
         for (let index = 0; index < prompts.address_amount; index++) {
             const wallet = ethers.Wallet.createRandom()
