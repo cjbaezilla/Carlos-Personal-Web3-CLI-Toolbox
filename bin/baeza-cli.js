@@ -1,7 +1,5 @@
-#! /usr/bin/env node 
-import { createNewWallet } from "../commands/Utils.js"
-
-import inquirer from "inquirer"
+#! /usr/bin/env node
+import { createNewWallet, createNewContract } from "../commands/Utils.js"
 import { Command } from 'commander'
 const program = new Command()
 
@@ -14,6 +12,12 @@ program.command('create-wallet')
   .description('create wallets on demand depending on your needs.')
   .action(() => {
     createNewWallet()
+  })
+
+program.command('create-contract')
+  .description('creates and publish a custom ERC721A contract for your project.')
+  .action(() => {
+    createNewContract()
   })
 
 program.command('watch')
@@ -29,15 +33,6 @@ program.command('watch')
     //console.log(str.split(options.separator, limit));
   })
 
-program.command('create')
-  .description('creates a custom ERC721A contract for your project.')
-  //.argument('<strings...>', 'one or more strings')
-  //.option('-s, --separator <char>', 'separator character', ',')
-  .action((strings, options) => {
-    console.log(options)
-    console.log(strings)
-    //console.log(strings.join(options.separator));
-  })
 
 program.command('upload')
   .description('upload your project metadata files to IPFS/Arweave.')
