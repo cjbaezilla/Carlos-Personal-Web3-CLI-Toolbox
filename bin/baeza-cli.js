@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-import { createNewWallet, createNewContract } from "../commands/Utils.js"
+import { createNewWallet, createNewNFTContract } from "../commands/Utils.js"
 import { Command } from 'commander'
 const program = new Command()
 
@@ -17,7 +17,7 @@ program.command('create-wallet')
 program.command('create-contract')
   .description('creates and publish a custom ERC721A contract for your project.')
   .action(() => {
-    createNewContract()
+    createNewNFTContract()
   })
 
 program.command('watch')
