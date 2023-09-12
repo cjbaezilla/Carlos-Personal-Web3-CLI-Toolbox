@@ -3,7 +3,7 @@ pragma solidity >=0.8.2 <0.9.0;
 
 contract Storage {
 
-    uint256 number = {{OP_NUMBER}};
+    uint256 number = 0;
 
     function store(uint256 num) public {
         number = num;

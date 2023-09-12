@@ -1,5 +1,8 @@
-import input from '@inquirer/input';
-import select from '@inquirer/select';
+import input from '@inquirer/input'
+import select from '@inquirer/select'
+import confirm from '@inquirer/confirm';
+import fs from 'fs'
+import solc from 'solc'
 import { ethers } from "ethers"
 
 import dotenv from 'dotenv';
@@ -50,12 +53,29 @@ export async function createNewContract() {
     const targetNetworkRPC = await select({
         message: 'What is the target network?',
         choices: availableNetworks
-    });
+    })
+
+    const contractAmount = await input({ message: 'What is the amount?:' })
+
+    const answer = await confirm({ message: 'Create and deploy this contract?' })
     
     const provider = new ethers.providers.JsonRpcProvider(targetNetworkRPC)
     const signer = new ethers.Wallet(process.env.PRIV_KEY, provider)
 
-    const balance = await provider.getBalance(signer.address)
-console.log(ethers.utils.formatEther(balance.toString()))
+    //const balance = await provider.getBalance(signer.address)
+    //console.log(ethers.utils.formatEther(balance.toString()))
+
+    try {
+        const baseContract = await fs.promises.readFile("./base-contracts/Storage.sol")
+        //const result = baseContract.toString().replace("{{OP_NUMBER}}", contractAmount);
+        //fs.writeFileSync('./user-contracts/Storage.sol', result.toString())
+
+        const contractCompile = solc.compile(baseContract.toString(), 1)
+        console.log(contractCompile)
+        //fs.writeFileSync('./compiled-contracts/Storage.json', contractCompile)
+
+    } catch (err) {
+        console.error(err)
+    }
     
 }
