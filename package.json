@@ -2,11 +2,12 @@
   "name": "carlos-personal-web3-cli-toolbox",
   "version": "1.0.0",
   "description": "personal useful tooling for my daily basis job.",
-  "main": "bin/baeza-cli.js",
+  "exports": "./bin/baeza-cli.js",
+  "type": "module",
   "author": "Carlos Baeza",
-  "bin": { 
-    "baeza-cli": "./bin/baeza-cli.js" 
-  }, 
+  "bin": {
+    "baeza-cli": "./bin/baeza-cli.js"
+  },
   "devDependencies": {
     "bun-types": "latest"
   },
@@ -15,6 +16,9 @@
   },
   "dependencies": {
     "chalk": "^5.3.0",
-    "commander": "^11.0.0"
+    "commander": "^11.0.0",
+    "figlet": "^1.6.0",
+    "inquirer": "^9.2.11",
+    "ethers": "^5.7"
   }
 }
