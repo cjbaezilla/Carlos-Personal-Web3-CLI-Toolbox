@@ -83,7 +83,7 @@ export async function createNewNFTContract() {
                 }
               }
             }
-          };
+          }
 
           const output = JSON.parse(solc.compile(JSON.stringify(inputt)))
           const abi = output.contracts['Storage.sol'].Storage.abi
@@ -93,7 +93,7 @@ export async function createNewNFTContract() {
 
           const factory = new ContractFactory(abi, bytecode, signer);
 
-            //const contract = await factory.deploy();
+            const contract = await factory.deploy(222,signer.address);
 
             //save deploy info on logs
             console.log(contract.address);
